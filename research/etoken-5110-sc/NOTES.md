@@ -158,6 +158,56 @@ documented, and inferring it from traces alone is not realistic. The remaining
 path is static analysis of the vendor library, which is a different kind of
 project — much larger, and on shakier legal ground than observing a protocol.
 
+## Static analysis of the vendor stack
+
+### Secure messaging on the response, confirmed by verification
+
+Not an inference: the 64 bytes returned by `80 08` fail signature verification
+against the token's public key, while the file `pkcs11-tool` wrote in the same
+run verifies successfully.
+
+    APDU 38 payload           -> Signature Verification Failure
+    pkcs11-tool output file   -> Signature Verified Successfully
+
+So the response really is protected, and the plaintext signature never appears
+on the wire.
+
+### No symmetric crypto tables anywhere in the vendor libraries
+
+Scanned all ten shared objects shipped by the package for AES S-boxes (forward
+and inverse), DES SP/PC1 tables, and MD5/SHA constants. Only the SHA-1 IV turns
+up, in the two IDPrime engines. `libeToken.so` imports no crypto library either —
+its only dependencies are pthread, dl, pcsclite and libc.
+
+Either the symmetric implementation is table-free/obfuscated, or the session key
+material is derived somewhere not yet located. All the libraries are stripped.
+
+### 🟢 The vendor stack is built on OpenSC, and says so
+
+`libeTPKCS15.so` exports **94 `sc_*` symbols** — `sc_pkcs15_bind`,
+`sc_pkcs15_decode_cdf_entry`, `sc_asn1_decode`, `sc_pkcs15_change_pin` and so on.
+It is OpenSC's own PKCS#15 layer, compiled into the product. The package's
+copyright file states it plainly:
+
+> The Open Source Software Component (OpenSC), whose PKCS#15 functionality is
+> utilized within SafeNet's PKCS#11 and SafeNet SIS MD products, is used and
+> distributed under the GNU Lesser General Public License 2.1
+
+Two consequences.
+
+**Legal.** LGPL-2.1 §6 explicitly permits reverse engineering for debugging
+modifications of the covered work. For the OpenSC-derived portion, the grey area
+noted earlier does not apply.
+
+**Practical.** The licence obliges the distributor to make the source of the
+covered component available. A source request is free and legitimate, and would
+hand over their modified OpenSC instead of it having to be reconstructed.
+
+Temper the expectation: the split of symbols suggests the interesting part is not
+in the covered component. `libeTPKCS15.so` has 94 `sc_*` symbols; `libeToken.so`,
+where the card protocol and the secure messaging almost certainly live, has 5.
+The request is worth making, and is unlikely to deliver the SM implementation.
+
 ## Open questions
 
 1. Key derivation for the secure-messaging session — the blocker.
