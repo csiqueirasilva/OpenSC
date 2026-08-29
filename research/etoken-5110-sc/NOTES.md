@@ -98,14 +98,74 @@ Files under `66 66 50 00 02 20 50 xx` carry, among other things:
 which matches the EC P-256 keys generated on this token. So this subtree is the
 key/certificate object directory.
 
+## Second trace: login and signature
+
+Captured with `pkcs11-tool --login --sign --mechanism ECDSA-SHA256`. 51 APDUs.
+
+### PIN is never sent in the clear
+
+    36. -> 80 17 01 00 08          <- 22 D9 DC 5B 22 BA FF 5B      (8-byte challenge)
+     9. -> 80 11 00 11 0A 10 08 <8 bytes>                   SW=9000
+
+`80 17` is a proprietary GET CHALLENGE (P1 selects the purpose: 00 for the
+authentication that precedes reads, 01 before signing). `80 11` carries the
+response. So authentication is challenge/response — good news for privacy of the
+traces, and bad news for anyone hoping to replay.
+
+### Reads are in the clear, and fully decoded
+
+    80 18 00 00 04 0E 02 <offset:2> <len:1>
+
+Reads `len` bytes at `offset` from the selected file. Confirmed by the two-part
+read of a 0x1C4-byte certificate: offset 0000 len F0, then offset 00F0 len D4.
+Certificates come back as plain DER (`30 82 01 C0 ...`) and labels as plain
+ASCII (`netbird-ca-intermediaria`, `csiqueira-estacao`).
+
+### Object enumeration — `80 01 00 00 04 09 02 00 00 00`
+
+    <- 0A 10 60 01 50 01 60 02 50 02 60 03 50 03 10 0...
+
+A list of the object ids that also appear as path components: `6001/5001`,
+`6002/5002`, `6003/5003`. This is the directory.
+
+### 🔴 Signing is wrapped in secure messaging
+
+    37. -> 84 0C 12 31 4C 32 ... (80 bytes)     <- 96 bytes
+    38. -> 80 08 00 31 00                       <- 10 40 <64 bytes>
+
+`CLA=0x84` sets the secure-messaging bit. The 64 bytes returned by `80 08` are
+**not** the signature: the ECDSA signature written by `pkcs11-tool` in the same
+run starts `21 CD 4A 05`, while the APDU returns `AC 2E 07 7E`. The payload is
+encrypted under a session key derived from the challenge/response above.
+
+## Where this leaves a driver
+
+| capability | status |
+|---|---|
+| identify card, walk the file tree | **solved** — standard SELECT by path |
+| read certificates and public objects | **solved** — `80 18` decoded, data in the clear |
+| enumerate objects | **solved** — `80 01` |
+| authenticate (PIN) | observed, not understood — challenge/response, key derivation unknown |
+| **sign** | **blocked** — inside secure messaging |
+
+A read-only driver is achievable with what is documented here: it would list and
+read certificates without any crypto work. That is genuinely useful for
+inspection, and useless for the case that motivated this — signing.
+
+Getting to signing means reimplementing the secure-messaging layer: session key
+derivation from the PIN authentication, cipher, MAC and padding. None of it is
+documented, and inferring it from traces alone is not realistic. The remaining
+path is static analysis of the vendor library, which is a different kind of
+project — much larger, and on shakier legal ground than observing a protocol.
+
 ## Open questions
 
-1. PIN verification command — needs a trace with login.
-2. Signature command (MSE + PSO, or a proprietary equivalent).
-3. Meaning of FCI tags 01 and 04, and of the `0E 02 00 00` prefix in READ.
-4. Full object directory format, to map onto OpenSC's PKCS#15 layer.
-5. Whether writing (key generation, certificate import) is in scope at all — read
-   and sign already cover the common case.
+1. Key derivation for the secure-messaging session — the blocker.
+2. Cipher, MAC and padding used by the `84` class commands.
+3. Meaning of FCI tags 01 and 04.
+4. Semantics of `80 1B` (16-byte payload after authentication) and `80 07`.
+5. Whether the same applet is on the Bank of Lithuania card that shares this ATR
+   — a second implementation would give a lot of signal for free.
 
 ## Method note
 
