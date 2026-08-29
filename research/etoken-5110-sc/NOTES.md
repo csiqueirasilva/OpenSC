@@ -208,6 +208,36 @@ in the covered component. `libeTPKCS15.so` has 94 `sc_*` symbols; `libeToken.so`
 where the card protocol and the secure messaging almost certainly live, has 5.
 The request is worth making, and is unlikely to deliver the SM implementation.
 
+## Prior art, and the cheap way out
+
+**Issue #1320** reports the same device (ATR `3b:d5:18:00:81:31:3a:7d:80:73:c8:21:10:30`,
+one byte apart from the token used here) as the only device that can legally sign
+contracts in Singapore. No APDU capture, no analysis, closed without resolution.
+Nothing published anywhere describes this protocol — the notes in this directory
+appear to be the first.
+
+**No record of anyone requesting the LGPL source** from SafeNet/Thales.
+
+**PR #3048** is the useful one: OpenSC supports the eToken **5110+ FIPS** through
+`card-idprime.c`. It runs *IDPrime Java Applet 4.5.0.F* and needs no secure
+messaging. A contributor there reports their eToken 5110 working when treated as
+`SC_CARD_TYPE_IDPRIME_940`.
+
+So the SafeNet range splits in two:
+
+| variant | applet | OpenSC |
+|---|---|---|
+| eToken 5110 **SC** (this one) | legacy SafeNet Java | **no** — secure messaging, no driver |
+| eToken 5110 **CC** / **5110+ FIPS** | IDPrime | **yes**, native |
+
+Anyone arriving here to escape the proprietary middleware should buy the IDPrime
+variant rather than reverse engineer this one. The letters after the model number
+decide it.
+
+That does not make this research useless — the `SC` variant is sold widely, and
+whoever already owns one now knows exactly what it speaks, and exactly where the
+wall is.
+
 ## Open questions
 
 1. Key derivation for the secure-messaging session — the blocker.
