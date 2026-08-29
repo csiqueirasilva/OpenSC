@@ -1,0 +1,690 @@
+SCardEstablishContext
+ i dwScope: SCARD_SCOPE_SYSTEM (0x00000002)
+ o hContext: 0x78D591E4
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.002132]
+SCardListReaders
+ i hContext: 0x78D591E4
+ i mszGroups: (null)
+ o pcchReaders: 0x0000002C
+ o mszReaders: SafeNet eToken 5100 [eToken 5110 SC] 00 00
+ o mszReaders: 
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000012]
+SCardGetStatusChange
+ i hContext: 0x78D591E4
+ i dwTimeout: 0x00000000 (0)
+ i cReaders: 1
+ i szReader: SafeNet eToken 5100 [eToken 5110 SC] 00 00
+ i  dwCurrentState:  (0x00000000)
+ i  dwEventState:  (0x00000000)
+ i  Atr length: 0x00000000 (0)
+ i  Atr: 
+ o szReader: SafeNet eToken 5100 [eToken 5110 SC] 00 00
+ o  dwCurrentState:  (0x00000000)
+ o  dwEventState: SCARD_STATE_CHANGED, SCARD_STATE_PRESENT, SCARD_STATE_INUSE (0x00000122)
+ o  Atr length: 0x0000000E (14)
+ o  Atr: 3B D5 18 00 81 31 FE 7D 80 73 C8 21 10 F4
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000023]
+SCardReleaseContext
+ i hContext: 0x78D591E4
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000010]
+    SCardEstablishContext
+     i dwScope: SCARD_SCOPE_SYSTEM (0x00000002)
+     o hContext: 0x736A4A31
+     => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.001444]
+    SCardListReaders
+     i hContext: 0x736A4A31
+     i mszGroups: (null)
+     o pcchReaders: 0x0000002C
+     o mszReaders: SafeNet eToken 5100 [eToken 5110 SC] 00 00
+     o mszReaders: 
+     => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000013]
+    SCardGetStatusChange
+     i hContext: 0x736A4A31
+     i dwTimeout: 0x00000000 (0)
+     i cReaders: 1
+     i szReader: SafeNet eToken 5100 [eToken 5110 SC] 00 00
+     i  dwCurrentState:  (0x00000000)
+     i  dwEventState:  (0x00000000)
+     i  Atr length: 0x00000000 (0)
+     i  Atr: 
+     o szReader: SafeNet eToken 5100 [eToken 5110 SC] 00 00
+     o  dwCurrentState:  (0x00000000)
+     o  dwEventState: SCARD_STATE_CHANGED, SCARD_STATE_PRESENT, SCARD_STATE_INUSE (0x00000122)
+     o  Atr length: 0x0000000E (14)
+     o  Atr: 3B D5 18 00 81 31 FE 7D 80 73 C8 21 10 F4
+     => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000021]
+    SCardGetStatusChange
+     i hContext: 0x736A4A31
+     i dwTimeout: 0xFFFFFFFF (4294967295)
+     i cReaders: 2
+     i szReader: SafeNet eToken 5100 [eToken 5110 SC] 00 00
+     i  dwCurrentState: SCARD_STATE_PRESENT, SCARD_STATE_INUSE (0x00000120)
+     i  dwEventState:  (0x00000000)
+     i  Atr length: 0x0000000E (14)
+     i  Atr: 3B D5 18 00 81 31 FE 7D 80 73 C8 21 10 F4
+     i szReader: \\?PnP?\Notification
+     i  dwCurrentState:  (0x00000000)
+     i  dwEventState:  (0x00000000)
+     i  Atr length: 0x00000000 (0)
+     i  Atr: 
+SCardEstablishContext
+ i dwScope: SCARD_SCOPE_SYSTEM (0x00000002)
+ o hContext: 0x39F17569
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.001452]
+SCardConnect
+ i hContext: 0x39F17569
+ i szReader SafeNet eToken 5100 [eToken 5110 SC] 00 00
+ i dwShareMode: SCARD_SHARE_SHARED (0x00000002)
+ i dwPreferredProtocols: 0x00000003 (T=0, T=1)
+ i phCard 0x00000000 (0)
+ i pdwActiveProtocol 0x00000002 (2)
+ o phCard 0x55ECE06A (1441587306)
+ o dwActiveProtocol: T=1 (0x00000002)
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.001290]
+SCardBeginTransaction
+ i hCard: 0x55ECE06A
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000009]
+SCardStatus
+ i hCard: 0x55ECE06A
+ i pcchReaderLen NULL
+ i pcbAtrLen NULL
+ o cchReaderLen NULL
+ o mszReaderName ""
+ o dwState NULL
+ o dwProtocol NULL
+ o bAtrLen NULL
+ o bAtr
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000019]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x00000005 (5)
+ i bSendBuffer
+ i  0000 80 1C 00 00 00                                  .....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000014 (20)
+ o bRecvBuffer
+ o  0000 10 10 D6 E4 A5 5A 64 E7 4F D2 AC E1 51 5D F0 F4 .....Zd.O...Q]..
+ o  0010 16 E8 90 00                                     ....
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.005202]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000E (14)
+ i bSendBuffer
+ i  0000 00 A4 08 04 08 66 66 50 00 C0 00 00 01 00       .....ffP......
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000002 (2)
+ o bRecvBuffer
+ o  0000 6A 82                                           j.
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.010099]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000C (12)
+ i bSendBuffer
+ i  0000 00 A4 08 04 06 66 66 50 00 00 0A 00             .....ffP....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 0A 03 02 00 09 04 08 00 FF FF ................
+ o  0010 FF FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.013364]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 09                   ..........
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x0000000B (11)
+ o bRecvBuffer
+ o  0000 05 01 08 00 0A 03 00 00 57 90 00                ........W..
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.008505]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x00000010 (16)
+ i bSendBuffer
+ i  0000 00 A4 08 04 0A 66 66 50 00 02 20 60 01 00 01 00 .....ffP.. `....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 01 03 02 00 3F 04 08 00 11 11 ..........?.....
+ o  0010 11 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.014392]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 3F                   .........?
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000041 (65)
+ o bRecvBuffer
+ o  0000 1B 5A FF FF FF FF 0A 06 08 2A 86 48 CE 3D 03 01 .Z.......*.H.=..
+ o  0010 07 12 6E 65 74 62 69 72 64 2D 63 61 2D 72 65 73 ..netbird-ca-res
+ o  0020 65 72 76 61 00 01 03 00 00 00 14 70 31 31 23 63 erva.......p11#c
+ o  0030 38 34 61 34 66 35 37 35 30 64 32 33 32 34 33 90 84a4f5750d23243.
+ o  0040 00                                              .
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.011078]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000E (14)
+ i bSendBuffer
+ i  0000 00 A4 08 04 08 66 66 50 00 02 20 50 01 00       .....ffP.. P..
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 50 01 03 02 00 6E 04 08 00 00 00 .....P....n.....
+ o  0010 00 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.017255]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000C (12)
+ i bSendBuffer
+ i  0000 00 A4 08 04 06 66 66 50 00 00 0F 00             .....ffP....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 0F 03 02 00 2B 04 08 00 FF 00 ..........+.....
+ o  0010 FF FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.014581]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x00000010 (16)
+ i bSendBuffer
+ i  0000 00 A4 08 04 0A 66 66 50 00 02 20 60 02 00 01 00 .....ffP.. `....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 01 03 02 00 3E 04 08 00 11 11 ..........>.....
+ o  0010 11 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.014766]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 3E                   .........>
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000040 (64)
+ o bRecvBuffer
+ o  0000 1B 5A FF FF FF FF 0A 06 08 2A 86 48 CE 3D 03 01 .Z.......*.H.=..
+ o  0010 07 11 63 73 69 71 75 65 69 72 61 2D 65 73 74 61 ..csiqueira-esta
+ o  0020 63 61 6F 00 01 02 00 00 00 14 70 31 31 23 35 65 cao.......p11#5e
+ o  0030 31 38 37 36 37 63 34 34 36 62 35 31 61 36 90 00 18767c446b51a6..
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.011041]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000E (14)
+ i bSendBuffer
+ i  0000 00 A4 08 04 08 66 66 50 00 02 20 50 02 00       .....ffP.. P..
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 50 02 03 02 00 6D 04 08 00 00 00 .....P....m.....
+ o  0010 00 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.017312]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x00000010 (16)
+ i bSendBuffer
+ i  0000 00 A4 08 04 0A 66 66 50 00 02 20 60 03 00 01 00 .....ffP.. `....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 01 03 02 00 3E 04 08 00 11 11 ..........>.....
+ o  0010 11 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.014885]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 3E                   .........>
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000040 (64)
+ o bRecvBuffer
+ o  0000 1B 5A FF FF FF FF 0A 06 08 2A 86 48 CE 3D 03 01 .Z.......*.H.=..
+ o  0010 07 11 63 73 69 71 75 65 69 72 61 2D 65 73 74 61 ..csiqueira-esta
+ o  0020 63 61 6F 00 01 02 00 00 00 14 70 31 31 23 63 61 cao.......p11#ca
+ o  0030 62 63 30 30 61 64 37 66 64 34 34 37 39 38 90 00 bc00ad7fd44798..
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.010942]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000E (14)
+ i bSendBuffer
+ i  0000 00 A4 08 04 08 66 66 50 00 02 20 50 03 00       .....ffP.. P..
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 50 03 03 02 00 6D 04 08 00 00 00 .....P....m.....
+ o  0010 00 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.017765]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x00000010 (16)
+ i bSendBuffer
+ i  0000 00 A4 08 04 0A 66 66 50 00 02 20 10 02 00 01 00 .....ffP.. .....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 01 03 02 00 1F 04 08 00 00 00 ................
+ o  0010 00 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.015002]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x00000010 (16)
+ i bSendBuffer
+ i  0000 00 A4 08 04 0A 66 66 50 00 02 20 10 03 00 01 00 .....ffP.. .....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 01 03 02 00 18 04 08 00 00 00 ................
+ o  0010 00 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.018492]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000E (14)
+ i bSendBuffer
+ i  0000 00 A4 08 04 08 66 66 50 00 02 20 50 01 00       .....ffP.. P..
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 50 01 03 02 00 6E 04 08 00 00 00 .....P....n.....
+ o  0010 00 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.016891]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 6E                   .........n
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000070 (112)
+ o bRecvBuffer
+ o  0000 10 A5 FF FF FF FF 0A 06 08 2A 86 48 CE 3D 03 01 .........*.H.=..
+ o  0010 07 43 04 41 04 8F 80 7A 11 BC D8 5A E7 7E E3 A2 .C.A...z...Z.~..
+ o  0020 67 AA 0E AE E5 87 FC 64 08 48 D5 7F 46 A4 88 19 g......d.H..F...
+ o  0030 15 40 20 45 78 2E 38 7F CC 05 F7 55 F6 2B 37 35 .@ Ex.8....U.+75
+ o  0040 79 C3 90 12 6E E1 47 F7 6C B7 D4 36 A1 DA B9 1E y...n.G.l..6....
+ o  0050 48 5C 30 AE C1 12 6E 65 74 62 69 72 64 2D 63 61 H\0...netbird-ca
+ o  0060 2D 72 65 73 65 72 76 61 00 01 03 00 00 00 90 00 -reserva........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.013137]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000E (14)
+ i bSendBuffer
+ i  0000 00 A4 08 04 08 66 66 50 00 02 20 50 02 00       .....ffP.. P..
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 50 02 03 02 00 6D 04 08 00 00 00 .....P....m.....
+ o  0010 00 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.014043]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 6D                   .........m
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x0000006F (111)
+ o bRecvBuffer
+ o  0000 10 A5 FF FF FF FF 0A 06 08 2A 86 48 CE 3D 03 01 .........*.H.=..
+ o  0010 07 43 04 41 04 AC 2E 07 7E 52 A9 23 08 EE 7C E3 .C.A....~R.#..|.
+ o  0020 DD 67 C2 A3 65 E5 1E DA 47 22 B7 8F 18 39 4E 5B .g..e...G"...9N[
+ o  0030 C8 AA 68 CF 0E 86 05 E0 37 33 6B F7 EC 43 DC 2D ..h.....73k..C.-
+ o  0040 8E ED 4B 73 01 61 7D B6 FC 85 1E 01 6A 0B FD 23 ..Ks.a}.....j..#
+ o  0050 73 7A 9B 55 EA 11 63 73 69 71 75 65 69 72 61 2D sz.U..csiqueira-
+ o  0060 65 73 74 61 63 61 6F 00 01 02 00 00 00 90 00    estacao........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.013198]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000E (14)
+ i bSendBuffer
+ i  0000 00 A4 08 04 08 66 66 50 00 02 20 50 03 00       .....ffP.. P..
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 50 03 03 02 00 6D 04 08 00 00 00 .....P....m.....
+ o  0010 00 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.014431]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 6D                   .........m
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x0000006F (111)
+ o bRecvBuffer
+ o  0000 10 A5 FF FF FF FF 0A 06 08 2A 86 48 CE 3D 03 01 .........*.H.=..
+ o  0010 07 43 04 41 04 F2 7C 9C 16 81 05 0E D6 38 77 8D .C.A..|......8w.
+ o  0020 3B 2A 55 58 80 0B A7 57 31 8E D1 D0 00 69 5C 5C ;*UX...W1....i\\
+ o  0030 D9 68 E4 33 20 B0 21 43 A2 37 21 20 E7 F9 25 D8 .h.3 .!C.7! ..%.
+ o  0040 1A 16 DF B7 B4 FB A4 71 0F 2B 1C 57 4F 61 D9 FD .......q.+.WOa..
+ o  0050 BB 08 E4 88 62 11 63 73 69 71 75 65 69 72 61 2D ....b.csiqueira-
+ o  0060 65 73 74 61 63 61 6F 00 01 02 00 00 00 90 00    estacao........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.013235]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x00000010 (16)
+ i bSendBuffer
+ i  0000 00 A4 08 04 0A 66 66 50 00 02 20 10 02 00 01 00 .....ffP.. .....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 01 03 02 00 1F 04 08 00 00 00 ................
+ o  0010 00 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.015158]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 1F                   ..........
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000021 (33)
+ o bRecvBuffer
+ o  0000 00 18 6E 65 74 62 69 72 64 2D 63 61 2D 69 6E 74 ..netbird-ca-int
+ o  0010 65 72 6D 65 64 69 61 72 69 61 01 03 00 00 00 90 ermediaria......
+ o  0020 00                                              .
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.009515]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x00000010 (16)
+ i bSendBuffer
+ i  0000 00 A4 08 04 0A 66 66 50 00 02 20 10 02 00 02 00 .....ffP.. .....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 02 03 02 01 C4 04 08 00 00 FF ................
+ o  0010 FF FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.015214]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 F0                   ..........
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x000000F2 (242)
+ o bRecvBuffer
+ o  0000 30 82 01 C0 30 82 01 65 A0 03 02 01 02 02 14 55 0...0..e.......U
+ o  0010 18 0D D2 17 33 CD F6 7A A5 0D 4E EB 79 EF B4 B4 ....3..z..N.y...
+ o  0020 B3 FD 19 30 0A 06 08 2A 86 48 CE 3D 04 03 02 30 ...0...*.H.=...0
+ o  0030 1E 31 1C 30 1A 06 03 55 04 03 0C 13 47 54 45 43 .1.0...U....GTEC
+ o  0040 2D 44 53 49 20 4E 65 74 42 69 72 64 20 43 41 30 -DSI NetBird CA0
+ o  0050 1E 17 0D 32 36 30 38 32 39 31 35 30 36 32 31 5A ...260829150621Z
+ o  0060 17 0D 33 31 30 38 32 38 31 35 30 36 32 31 5A 30 ..310828150621Z0
+ o  0070 39 31 37 30 35 06 03 55 04 03 0C 2E 47 54 45 43 91705..U....GTEC
+ o  0080 2D 44 53 49 20 4E 65 74 42 69 72 64 20 43 41 20 -DSI NetBird CA 
+ o  0090 69 6E 74 65 72 6D 65 64 69 61 72 69 61 20 28 72 intermediaria (r
+ o  00A0 65 73 69 64 65 6E 63 69 61 29 30 59 30 13 06 07 esidencia)0Y0...
+ o  00B0 2A 86 48 CE 3D 02 01 06 08 2A 86 48 CE 3D 03 01 *.H.=....*.H.=..
+ o  00C0 07 03 42 00 04 8F 80 7A 11 BC D8 5A E7 7E E3 A2 ..B....z...Z.~..
+ o  00D0 67 AA 0E AE E5 87 FC 64 08 48 D5 7F 46 A4 88 19 g......d.H..F...
+ o  00E0 15 40 20 45 78 2E 38 7F CC 05 F7 55 F6 2B 37 35 .@ Ex.8....U.+75
+ o  00F0 90 00                                           ..
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.019388]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 F0 D4                   ..........
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x000000D6 (214)
+ o bRecvBuffer
+ o  0000 79 C3 90 12 6E E1 47 F7 6C B7 D4 36 A1 DA B9 1E y...n.G.l..6....
+ o  0010 48 5C 30 AE C1 A3 66 30 64 30 12 06 03 55 1D 13 H\0...f0d0...U..
+ o  0020 01 01 FF 04 08 30 06 01 01 FF 02 01 00 30 0E 06 .....0.......0..
+ o  0030 03 55 1D 0F 01 01 FF 04 04 03 02 01 06 30 1D 06 .U...........0..
+ o  0040 03 55 1D 0E 04 16 04 14 91 D2 B3 AF FF 7C C2 9B .U...........|..
+ o  0050 5E A6 73 DA B8 D0 2F FC C5 30 56 73 30 1F 06 03 ^.s.../..0Vs0...
+ o  0060 55 1D 23 04 18 30 16 80 14 A3 47 0F 16 C7 76 EE U.#..0....G...v.
+ o  0070 31 77 FC 31 B4 DC 0C 51 66 9D FF 80 1A 30 0A 06 1w.1...Qf....0..
+ o  0080 08 2A 86 48 CE 3D 04 03 02 03 49 00 30 46 02 21 .*.H.=....I.0F.!
+ o  0090 00 E7 56 87 2F 01 AF FD 62 81 05 EB CB 32 87 92 ..V./...b....2..
+ o  00A0 4B 11 DC 27 E0 84 F6 C4 3A B2 A4 39 95 83 9C 88 K..'....:..9....
+ o  00B0 B4 02 21 00 D8 D7 2A 41 E6 CC 42 79 1D DD 1D 41 ..!...*A..By...A
+ o  00C0 1A E3 8F 63 5A 60 6F E3 5A FE 98 6B 11 E0 C4 49 ...cZ`o.Z..k...I
+ o  00D0 5C 94 C4 95 90 00                               \.....
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.018018]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x00000010 (16)
+ i bSendBuffer
+ i  0000 00 A4 08 04 0A 66 66 50 00 02 20 10 03 00 01 00 .....ffP.. .....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 01 03 02 00 18 04 08 00 00 00 ................
+ o  0010 00 FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.018675]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 18                   ..........
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x0000001A (26)
+ o bRecvBuffer
+ o  0000 00 11 63 73 69 71 75 65 69 72 61 2D 65 73 74 61 ..csiqueira-esta
+ o  0010 63 61 6F 01 02 00 00 00 90 00                   cao.......
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.009085]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x00000010 (16)
+ i bSendBuffer
+ i  0000 00 A4 08 04 0A 66 66 50 00 02 20 10 03 00 02 00 .....ffP.. .....
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000019 (25)
+ o bRecvBuffer
+ o  0000 01 01 02 02 02 00 02 03 02 01 EE 04 08 00 00 FF ................
+ o  0010 FF FF FF FF FF 05 00 90 00                      .........
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.015312]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 00 F0                   ..........
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x000000F2 (242)
+ o bRecvBuffer
+ o  0000 30 82 01 EA 30 82 01 90 A0 03 02 01 02 02 14 38 0...0..........8
+ o  0010 00 37 EF EC AC 56 6C FE 4B AB 99 42 B1 9F 42 26 .7...Vl.K..B..B&
+ o  0020 97 D9 38 30 0A 06 08 2A 86 48 CE 3D 04 03 02 30 ..80...*.H.=...0
+ o  0030 39 31 37 30 35 06 03 55 04 03 0C 2E 47 54 45 43 91705..U....GTEC
+ o  0040 2D 44 53 49 20 4E 65 74 42 69 72 64 20 43 41 20 -DSI NetBird CA 
+ o  0050 69 6E 74 65 72 6D 65 64 69 61 72 69 61 20 28 72 intermediaria (r
+ o  0060 65 73 69 64 65 6E 63 69 61 29 30 1E 17 0D 32 36 esidencia)0...26
+ o  0070 30 38 32 39 32 30 32 35 30 34 5A 17 0D 32 37 30 0829202504Z..270
+ o  0080 32 32 35 32 30 32 35 30 34 5A 30 3A 31 1A 30 18 225202504Z0:1.0.
+ o  0090 06 03 55 04 03 0C 11 63 73 69 71 75 65 69 72 61 ..U....csiqueira
+ o  00A0 2D 65 73 74 61 63 61 6F 31 1C 30 1A 06 03 55 04 -estacao1.0...U.
+ o  00B0 0B 0C 13 46 55 4E 43 49 4F 4E 41 52 49 4F 20 30 ...FUNCIONARIO 0
+ o  00C0 32 34 33 39 39 30 30 59 30 13 06 07 2A 86 48 CE 2439900Y0...*.H.
+ o  00D0 3D 02 01 06 08 2A 86 48 CE 3D 03 01 07 03 42 00 =....*.H.=....B.
+ o  00E0 04 AC 2E 07 7E 52 A9 23 08 EE 7C E3 DD 67 C2 A3 ....~R.#..|..g..
+ o  00F0 90 00                                           ..
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.019164]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 00 F0 F0                   ..........
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x000000F2 (242)
+ o bRecvBuffer
+ o  0000 65 E5 1E DA 47 22 B7 8F 18 39 4E 5B C8 AA 68 CF e...G"...9N[..h.
+ o  0010 0E 86 05 E0 37 33 6B F7 EC 43 DC 2D 8E ED 4B 73 ....73k..C.-..Ks
+ o  0020 01 61 7D B6 FC 85 1E 01 6A 0B FD 23 73 7A 9B 55 .a}.....j..#sz.U
+ o  0030 EA A3 75 30 73 30 0C 06 03 55 1D 13 01 01 FF 04 ..u0s0...U......
+ o  0040 02 30 00 30 0E 06 03 55 1D 0F 01 01 FF 04 04 03 .0.0...U........
+ o  0050 02 07 80 30 13 06 03 55 1D 25 04 0C 30 0A 06 08 ...0...U.%..0...
+ o  0060 2B 06 01 05 05 07 03 02 30 1D 06 03 55 1D 0E 04 +.......0...U...
+ o  0070 16 04 14 9D DE 2D 61 25 77 5A 98 0E 71 67 0E 57 .....-a%wZ..qg.W
+ o  0080 4C 1B 9E E0 4A 69 5E 30 1F 06 03 55 1D 23 04 18 L...Ji^0...U.#..
+ o  0090 30 16 80 14 91 D2 B3 AF FF 7C C2 9B 5E A6 73 DA 0........|..^.s.
+ o  00A0 B8 D0 2F FC C5 30 56 73 30 0A 06 08 2A 86 48 CE ../..0Vs0...*.H.
+ o  00B0 3D 04 03 02 03 48 00 30 45 02 21 00 C4 A6 47 A3 =....H.0E.!...G.
+ o  00C0 A1 DB 1B 68 DA 23 65 04 45 C8 4B 53 1F 84 B7 11 ...h.#e.E.KS....
+ o  00D0 1D EA 51 EC 99 C5 5E 00 2F AC 12 D9 02 20 28 B3 ..Q...^./.... (.
+ o  00E0 65 E6 8F A2 0D DF 96 05 25 F4 6B C9 58 84 66 A5 e.......%.k.X.f.
+ o  00F0 90 00                                           ..
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.019398]
+SCardTransmit
+ i hCard: 0x55ECE06A
+ i pioSendPci.dwProtocol: 0x00000002
+ i pioSendPci.cbPciLength: 0x00000010
+ i bSendLength 0x0000000A (10)
+ i bSendBuffer
+ i  0000 80 18 00 00 04 0E 02 01 E0 0E                   ..........
+ o pioRecvPci.dwProtocol: 0xFFFFFFFFFFFFFFFF
+ o pioRecvPci.cbPciLength: 0xFFFFFFFFFFFFFFFF
+ o bRecvLength 0x00000010 (16)
+ o bRecvBuffer
+ o  0000 36 6E EB 17 A0 B4 97 F1 6B AA 1A 15 E8 78 90 00 6n......k....x..
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.008711]
+SCardEndTransaction
+ i hCard: 0x55ECE06A
+ i dwDisposition: SCARD_LEAVE_CARD (0x00000000)
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000023]
+SCardDisconnect
+ i hCard: 0x55ECE06A
+ i dwDisposition: SCARD_LEAVE_CARD (0x00000000)
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000013]
+SCardReleaseContext
+ i hContext: 0x39F17569
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000014]
+SCardCancel
+ i hCard: 0x736A4A31
+     o szReader: SafeNet eToken 5100 [eToken 5110 SC] 00 00
+     o  dwCurrentState: SCARD_STATE_PRESENT, SCARD_STATE_INUSE (0x00000120)
+     o  dwEventState: SCARD_STATE_PRESENT, SCARD_STATE_INUSE (0x00000120)
+     o  Atr length: 0x0000000E (14)
+     o  Atr: 3B D5 18 00 81 31 FE 7D 80 73 C8 21 10 F4
+     o szReader: \\?PnP?\Notification
+     o  dwCurrentState:  (0x00000000)
+     o  dwEventState:  (0x00000000)
+     o  Atr length: 0x00000000 (0)
+     o  Atr: 
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.002080]
+SCardCancel
+     => Command cancelled. (SCARD_E_CANCELLED [0x80100002])  [0.473738]
+ i hCard: 0x736A4A31
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000005]
+SCardCancel
+ i hCard: 0x736A4A31
+ => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000001]
+    SCardReleaseContext
+     i hContext: 0x736A4A31
+     => Command successful. (SCARD_S_SUCCESS [0x00000000])  [0.000015]
+
+Thread 1/2
+Results sorted by total execution time
+total time: 0.477493 sec
+0.467254 sec ( 33 calls) 97.86% SCardTransmit
+0.003584 sec (  2 calls)  0.75% SCardEstablishContext
+0.002086 sec (  3 calls)  0.44% SCardCancel
+0.001290 sec (  1 calls)  0.27% SCardConnect
+0.000024 sec (  2 calls)  0.01% SCardReleaseContext
+0.000023 sec (  1 calls)  0.00% SCardGetStatusChange
+0.000023 sec (  1 calls)  0.00% SCardEndTransaction
+0.000019 sec (  1 calls)  0.00% SCardStatus
+0.000013 sec (  1 calls)  0.00% SCardDisconnect
+0.000012 sec (  1 calls)  0.00% SCardListReaders
+0.000009 sec (  1 calls)  0.00% SCardBeginTransaction
+
+Thread 2/2
+Results sorted by total execution time
+total time: 0.477493 sec
+0.473759 sec (  2 calls) 99.22% SCardGetStatusChange
+0.001444 sec (  1 calls)  0.30% SCardEstablishContext
+0.000015 sec (  1 calls)  0.00% SCardReleaseContext
+0.000013 sec (  1 calls)  0.00% SCardListReaders
